@@ -1,0 +1,48 @@
+CREATE DATABASE Repo;
+
+CREATE TABLE Personas (
+    idPersona integer auto_increment primary key,
+    nombre varchar(50)
+);
+
+Insert into personas (idPersona, nombre) values
+(null, 'Javi');
+
+CREATE TABLE usuarios (
+        idUsuario integer auto_increment primary key,
+        nombre varchar(30) not null,
+        password varchar(30) not null
+    );
+
+CREATE TABLE eventos (
+    idEvento integer auto_increment primary key,
+    nombre varchar(50) not null,
+    fecha date not null,
+    ubicacion varchar(50),
+    idUsuario integer,
+    foreign key (idUsuario) REFERENCES usuarios(idUsuario)
+);
+
+CREATE TABLE fotos (
+    idFoto integer auto_increment,
+    imagen mediumblob not null,
+    descripcion varchar(144),
+    idEvento integer not null,
+    idUsuario integer not null,
+    PRIMARY KEY(idFoto),
+    FOREIGN KEY(IdEvento) REFERENCES eventos(idEvento),
+    FOREIGN KEY(IdUsuario) REFERENCES usuarios(idUsuario)
+);
+
+CREATE TABLE apariciones (
+    idAparicion integer auto_increment,
+    idPersona integer not null,
+    idEvento integer not null,
+    PRIMARY KEY(idAparicion),
+    FOREIGN KEY(idPersona) REFERENCES personas(idPersona),
+    FOREIGN KEY(idEvento) REFERENCES eventos(idEvento)
+);
+
+INSERT INTO usuarios
+(nombre, password)
+VALUES ('admin', 'admin');
