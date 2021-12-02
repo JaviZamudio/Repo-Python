@@ -5,9 +5,6 @@ CREATE TABLE Personas (
     nombre varchar(50)
 );
 
-Insert into personas (idPersona, nombre) values
-(null, 'Javi');
-
 CREATE TABLE usuarios (
         idUsuario integer auto_increment primary key,
         nombre varchar(30) not null,
